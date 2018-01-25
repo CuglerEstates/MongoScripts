@@ -1,42 +1,23 @@
-#Python2.7 Script for Ubuntu 16.04
+# Python2.7 Script for Ubuntu 16.04
+# scp -P 2222 <FILE> vagrant@127.0.0.1:/home/vagrant/<FILE>
 
 import os
 from pprint import pprint
-
-try:
-    import pip
-except ImportError:
-    os.system('sudo apt install python-pip -y')
-    os.system('sudo pip install --upgrade pip')
-    import pip
-    
-try:
-    import pymongo
-    from pymongo import MongoClient
-except ImportError:
-    pip.main(['install', 'pymongo'])
-    import pymongo
-    from pymongo import MongoClient
-    
-try:
-    import alpha_vantage
-    from alpha_vantage.timeseries import TimeSeries
-except ImportError:
-    pip.main(['install', 'alpha_vantage'])
-    import alpha_vantage
-    from alpha_vantage.timeseries import TimeSeries
-
+from pymongo import MongoClient
+from alpha_vantage.timeseries import TimeSeries
     
 ####################################################################
+
 
 #installing MongoDB
 os.system('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5')
-os.system('echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list')
+os.system('sudo echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list')
 os.system('sudo apt-get update')
-os.system('sudo apt-get install -y mongodb-org')
+os.system('sudo apt-get install -y --allow-unauthenticated mongodb-org')
 os.system('sudo service mongod start')
 
 ####################################################################
+
 
 # Connection to the MongoDB program at specific URLs & Ports
 # default is localhost:27017
@@ -49,6 +30,7 @@ db = connection.StockMarketDB
 mo = db.monthlyStatistics
 
 ####################################################################
+
 
 # Personal issued key from alpha_vantage
 ts = TimeSeries(key='II0VU3FTX7AAEU99')
