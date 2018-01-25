@@ -1,5 +1,6 @@
-#Python2.7 Script for Ubuntu 16.04
+#Python3 Script for Ubuntu 16.04
 
+import urllib.request
 from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
@@ -27,19 +28,21 @@ ts = TimeSeries(key='II0VU3FTX7AAEU99')
 data, meta_data  = ts.get_intraday(interval='60min', symbol='MSFT')
 
 # Will display that data
-pprint(data)
+# pprint(data)
+
+parsed_data = {}
 
 # formatting nested dictionary keys for mongoDB
-for date, stock in data.iteritems():
+for date, stock in data.items():
     parsed_data[date] = {}
-    for price in stock.iterkeys():
+    for price in stock.keys():
         parsed_data[date][price[3:]] = data[date][price] 
 
 # adding 'date' dictionary key as a value to
 # nested dictionary, then inserting to MongoDB
-for date, stock in parsed_data.iteritems():
+for date, stock in parsed_data.items():
     stock['date'] = date
-    mo.insert_one(stock)
+    ho.insert_one(stock)
 
 results = ho.find()
 for documents in results:
