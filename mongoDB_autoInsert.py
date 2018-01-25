@@ -9,16 +9,6 @@ from alpha_vantage.timeseries import TimeSeries
 ####################################################################
 
 
-#installing MongoDB
-os.system('sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5')
-os.system('sudo echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list')
-os.system('sudo apt-get update')
-os.system('sudo apt-get install -y --allow-unauthenticated mongodb-org')
-os.system('sudo service mongod start')
-
-####################################################################
-
-
 # Connection to the MongoDB program at specific URLs & Ports
 # default is localhost:27017
 connection = MongoClient('localhost:27017')

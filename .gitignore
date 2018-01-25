@@ -7,8 +7,6 @@ syntax: glob
 *.#*
 
 
-
-
 ## paths
 .rambo-tmp
 .vagrant
