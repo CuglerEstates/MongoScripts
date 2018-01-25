@@ -1,0 +1,14 @@
+syntax: glob
+
+
+## patterns
+
+*#
+*.#*
+*~
+
+
+
+## paths
+.rambo-tmp
+.vagrant
