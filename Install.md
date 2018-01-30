@@ -15,7 +15,13 @@ sudo bash MongoScripts/MongoSCripts/mongoInstall.sh
 python3 -m venv ~/venv
 source ~/venv/bin/activate
 ```
-#### 4) Modify and run the .py scripts available for your project needs!
+
+#### 4) Install requirements.txt file with pip
+```
+pip install -r requirements.txt
+```
+
+#### 5) Modify and run the .py scripts available for your project needs!
 ```
 python <file>.py
 ```
