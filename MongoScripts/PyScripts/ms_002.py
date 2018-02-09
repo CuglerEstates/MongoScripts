@@ -25,7 +25,7 @@ ho = db.hourlyStatistics
 ts = TimeSeries(key='II0VU3FTX7AAEU99')
 
 # Calling an individual company's monthly stock data
-data, meta_data  = ts.get_intraday(interval='60min', symbol='MSFT')
+data, meta_data  = ts.get_intraday(symbol='MSFT', interval='60min')
 
 # Will display that data
 # pprint(data)
