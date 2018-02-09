@@ -7,7 +7,7 @@ git clone git@github.com:alan-cugler/MongoScripts.git
 
 #### 2) Run mongoInstall.sh to install both MongoDB and python3 virtualenv
 ```
-sudo bash MongoScripts/MongoSripts/mongoInstall.sh
+sudo bash MongoScripts/MongoSripts/setup.sh
 ```
 
 #### 3) Now we create virtualenv directory and activate the environment. 
