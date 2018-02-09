@@ -18,7 +18,7 @@ source ~/venv/bin/activate
 
 #### 4) Install requirements.txt file with pip
 #```
-pip install -r MongoScripts/MongoScripts/requirements.txt
+pip install -r ./MongoScripts/requirements.txt
 #```
 
 #### 5) Modify and run the .py scripts available for your project needs!

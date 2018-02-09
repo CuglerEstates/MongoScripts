@@ -9,3 +9,4 @@
 #```
 sudo bash MongoScripts/MongoScripts/setup.sh
 sudo apt-get install vim
+sudo apt-get install python3-venv
