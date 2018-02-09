@@ -1,0 +1,11 @@
+# Installation guide
+
+#### 1) Clone this repo to your home directory.
+#```
+#git clone git@github.com:alan-cugler/MongoScripts.git
+#```
+
+#### 2) Run mongoInstall.sh to install both MongoDB and python3 virtualenv
+#```
+sudo bash MongoScripts/MongoScripts/setup.sh
+sudo apt-get install vim
