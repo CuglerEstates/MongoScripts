@@ -16,7 +16,7 @@ connection = MongoClient('localhost:27017')
 db = connection.StockMarketDB
 
 # Switching to a specific Collection(table) within the DB
-mo = db.monthlyStatistics
+col = db.monthlyStatistics
 
 
 ####################################################################
@@ -42,7 +42,7 @@ for date, stock in data.items():
 # nested dictionary, then inserting to MongoDB
 for date, stock in parsed_data.items():
     stock['date'] = date
-    mo.insert_one(stock)
+    col.insert_one(stock)
 
 ########################################
 #            Data break down           #
@@ -61,9 +61,8 @@ for date, stock in parsed_data.items():
 
 ###################################################################
 # Looking at documents inside the collection
-# results = mo.find()
-# for documents in results:
-#     pprint(documents)
+# for doc in col.find().sort('date', pymongo.ASCENDING):
+#     pprint(doc)
 
 
 # to delete all date in the collection
