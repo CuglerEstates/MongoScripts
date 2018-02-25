@@ -16,7 +16,7 @@ connection = MongoClient('localhost:27017')
 db = connection.StockMarketDB
 
 # Switching to a specific Collection(table) within the DB
-ho = db.hourlyStatistics
+col = db.hourlyStatistics
 
 ####################################################################
 
@@ -42,8 +42,7 @@ for date, stock in data.items():
 # nested dictionary, then inserting to MongoDB
 for date, stock in parsed_data.items():
     stock['date'] = date
-    ho.insert_one(stock)
+    col.insert_one(stock)
 
-results = ho.find()
-for documents in results:
-    pprint(documents)
+for doc in col.find().sort('date', pymongo.ASCENDING):
+    pprint(doc)
