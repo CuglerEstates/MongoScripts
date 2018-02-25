@@ -1,12 +1,17 @@
 #Python3 Script for Ubuntu 16.04
 
 import urllib.request
+import datetime
 from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
+ 
 
 ####################################################################
 
+# simple variables
+now = str(datetime.datetime.today())
+info_source = 'Alpha Vantage'
 
 # Connection to the MongoDB program at specific URLs & Ports
 # default is localhost:27017
@@ -28,6 +33,7 @@ ts = TimeSeries(key='II0VU3FTX7AAEU99')
 data, meta_data  = ts.get_intraday(symbol='MSFT', interval='60min')
 
 # Will display that data
+# pprint(meta_data)
 # pprint(data)
 
 parsed_data = {}
@@ -40,9 +46,13 @@ for date, stock in data.items():
 
 # adding 'date' dictionary key as a value to
 # nested dictionary, then inserting to MongoDB
+
 for date, stock in parsed_data.items():
+    stock['ticker'] = meta_data['2. Symbol']
+    stock['info_source'] = info_source
+    stock['last_updated'] = now
     stock['date'] = date
     col.insert_one(stock)
 
-for doc in col.find().sort('date', pymongo.ASCENDING):
-    pprint(doc)
+#for doc in col.find().sort('date', pymongo.ASCENDING):
+#    pprint(doc)

@@ -1,12 +1,15 @@
-# Python3 Script for Ubuntu 16.04
 
 import urllib.request
+import datetime
 from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
 
-
 ####################################################################
+
+# simple variables
+now = str(datetime.datetime.today())
+info_source = 'Alpha Vantage'
 
 # Connection to the MongoDB program at specific URLs & Ports
 # default is localhost:27017
@@ -36,11 +39,15 @@ parsed_data = {}
 for date, stock in data.items():
     parsed_data[date] = {}
     for price in stock.keys():
-        parsed_data[date][price[3:]] = data[date][price]
+        parsed_data[date][price[3:]] = data[date][price] 
 
-# adding 'date' dictionary key as a value to
+
+#adding 'date' dictionary key as a value to
 # nested dictionary, then inserting to MongoDB
 for date, stock in parsed_data.items():
+    stock['ticker'] = meta_data['2. Symbol']
+    stock['info_source'] = info_source
+    stock['last_updated'] = now
     stock['date'] = date
     col.insert_one(stock)
 
@@ -67,3 +74,5 @@ for date, stock in parsed_data.items():
 
 # to delete all date in the collection
 # mo.delete_many({})
+
+
