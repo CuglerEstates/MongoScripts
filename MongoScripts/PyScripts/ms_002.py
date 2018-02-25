@@ -1,10 +1,11 @@
 #Python3 Script for Ubuntu 16.04
 
 import urllib.request
+import datetime
 from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
-import datetime 
+ 
 
 ####################################################################
 
