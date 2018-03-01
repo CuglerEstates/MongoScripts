@@ -1,6 +1,6 @@
 
 import urllib.request
-import datetime
+from datetime import datetime
 from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
@@ -9,7 +9,7 @@ from alpha_vantage.timeseries import TimeSeries
 ####################################################################
 
 # simple variables
-now = str(datetime.datetime.today())
+now = str(datetime.today())
 info_source = 'Alpha Vantage'
 
 # Connection to the MongoDB program at specific URLs & Ports
@@ -31,8 +31,10 @@ ts = TimeSeries(key='II0VU3FTX7AAEU99')
 # Calling an individual company's monthly stock data
 data, meta_data  = ts.get_monthly(symbol='MSFT')
 
+scope = monthly
+
 # Will display that data
-#pprint(data)
+# pprint(meta_data)
 
 parsed_data = {}
 
@@ -50,6 +52,7 @@ for date, stock in parsed_data.items():
     stock['info_source'] = info_source
     stock['last_updated'] = now
     stock['date'] = date
+    stock['scope'] = scope
     col.insert_one(stock)
 
 ########################################
