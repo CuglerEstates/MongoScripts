@@ -5,6 +5,7 @@ from pprint import pprint
 from pymongo import MongoClient
 from alpha_vantage.timeseries import TimeSeries
 
+
 ####################################################################
 
 # simple variables
