@@ -32,6 +32,8 @@ ts = TimeSeries(key='II0VU3FTX7AAEU99')
 # Calling an individual company's monthly stock data
 data, meta_data  = ts.get_intraday(symbol='MSFT', interval='60min')
 
+scope = 'intraday'
+
 # Will display that data
 # pprint(meta_data)
 # pprint(data)
@@ -52,6 +54,7 @@ for date, stock in parsed_data.items():
     stock['info_source'] = info_source
     stock['last_updated'] = now
     stock['date'] = date
+    stock['scope'] = scope
     col.insert_one(stock)
 
 #for doc in col.find().sort('date', pymongo.ASCENDING):
