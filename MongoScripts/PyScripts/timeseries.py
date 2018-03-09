@@ -32,6 +32,8 @@ def operation(ts, scope, ticker, ops, intr):
         operates = "%s.get_%s(symbol=%s)" % (ts, scope, ticker)
     return operates
 
-##data, meta_data  = exec(operation)
+operates = operation(ts, scope, ticker, ops, intr)
+
+data, meta_data  = exec(operates)
       
-print (operation(ts, scope, ticker, ops, intr))
+print(operates)
